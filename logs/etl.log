@@ -1,0 +1,27 @@
+2025-11-19 16:16:55,539 | INFO | __main__ | Starting ETL
+2025-11-19 16:17:12,991 | INFO | __main__ | Starting ETL
+2025-11-19 16:17:37,298 | INFO | __main__ | Starting ETL
+2025-11-19 16:17:37,299 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:19:09,406 | INFO | __main__ | Starting ETL
+2025-11-19 16:19:09,407 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:19:18,419 | INFO | __main__ | Starting ETL
+2025-11-19 16:19:18,420 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:19:18,583 | INFO | __main__ | Stopping ETL
+2025-11-19 16:25:49,839 | INFO | __main__ | Starting ETL
+2025-11-19 16:25:49,839 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:25:52,579 | INFO | __main__ | Stopping ETL
+2025-11-19 16:28:16,137 | INFO | __main__ | Starting ETL
+2025-11-19 16:28:16,137 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:28:16,384 | INFO | __main__ | Stopping ETL
+2025-11-19 16:32:37,363 | INFO | __main__ | Starting ETL
+2025-11-19 16:32:37,363 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:32:40,080 | INFO | __main__ | Stopping ETL
+2025-11-19 16:47:36,666 | INFO | __main__ | Starting ETL
+2025-11-19 16:47:36,666 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:47:36,792 | INFO | __main__ | Stopping ETL
+2025-11-19 16:52:57,776 | INFO | __main__ | Starting ETL
+2025-11-19 16:52:57,776 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 16:52:58,013 | INFO | __main__ | Stopping ETL
+2025-11-19 22:34:40,321 | INFO | __main__ | Starting ETL
+2025-11-19 22:34:40,322 | INFO | utils.db | Started Connetion with PostGress Database
+2025-11-19 22:34:40,586 | INFO | __main__ | Stopping ETL

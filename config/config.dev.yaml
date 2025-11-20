@@ -1,0 +1,17 @@
+database:
+  host: postgres
+  port: 5432
+  user: etluser
+  password: etlpass
+  name: etldb
+
+logging:
+  level: INFO
+  file: logs/etl.log
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+  console: true
+
+etl:
+  extract_path: "data/input/"
+  output_path: "data/output/"
+  api_url: "https://example.com/data"
