@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %} ETL Builder - Sources {% endblock %}
+
+{% block content %}
+<section>
+    <h2>
+        Data Sources
+    </h2>
+    <p>
+        Here you can upload a CSV file that will act as a data source for your ETL pipeline.
+        Later we'll add JSON, API, XML, and website tables.
+    </p>
+    <h3> Existing Sources</h3>
+    {% if sources and sources|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Original Name</th>
+                    <th>Rows</th>
+                    <th>Columns</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in sources %}
+                <tr>
+                    <td>{{ s.id }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.source_type }}</td>
+                    <td>{{ s.original_name }}</td>
+                    <td>{{ s.row_count }}</td>
+                    <td>{{ s.column_count }}</td>
+                    <td>{{ s.status }}</td>
+                    <td>{{ s.created_at }}</td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No sources defined yet. Upload a CSV to create your first source.</p>
+    {% endif %}
+<hr>
+    <h3>Upload CSV</h3>
+      <!--
+      HTMX form:
+      - hx-post: send request to /sources/upload
+      - hx-target: put the response HTML into the #preview-area div
+      - hx-swap: replace innerHTML of that target
+    -->
+      <form
+      id="csv-upload-form"
+      hx-post="/sources/upload"
+      hx-target="#preview-area"
+      hx-swap="innerHTML"
+      hx-encoding="multipart/form-data"
+      enctype="multiplart/form-data"
+      method="post">
+    <label for="csv_file"> Choose CSV file: </label>
+    <input type="file" name="file" id="csv_file" accept=".csv" required>
+    <button type="submit">Upload & Preview</button>
+</form>
+<hr>
+<div id="preview-area">
+    <p>No data loaded yet. Upload a CSV to see a preview</p>
+</div>
+
+</section>
+
+{% endblock %}

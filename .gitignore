@@ -1,1 +1,6 @@
-.env
+*.env
+*.csv
+*.log
+logs/etl.log
+.gitignore
+*.pyc

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ETL Builder{% endblock %}</title>
+
+    <!-- Later you can plug Tailwind; for now just basic styles -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- HTMX (optional, for interactivity later) -->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body>
+<header>
+    <nav>
+        <h1>ETL Builder</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/sources">Sources</a></li>
+                       <!-- future:
+ <li><a href="/transform">Transform</a></li>
+            <li><a href="/load">Load</a></li>
+            <li><a href="/runs">Runs / History</a></li>
+            -->
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <small>&copy; {{ 2025 }} ETL Builder</small>
+</footer>
+</body>
+</html>

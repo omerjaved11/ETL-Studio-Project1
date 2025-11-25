@@ -1,6 +1,6 @@
 import logging
 import os
-from utils.config import config
+from src.utils.config import config
 
 LOG_DIR = config["logging"]["log_dir"]
 LOG_FILE_NAME = config["logging"]["file"]

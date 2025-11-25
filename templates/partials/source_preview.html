@@ -1,0 +1,11 @@
+<div class="source-preview">
+    <h3>Preview: {{ filename }}</h3>
+    {% if source_id %}
+        <p>Source Id: <code>{{ source_id }}</code></p>
+    {% endif%}
+    <p>Showing first 10 rows.</p>
+
+    <div class="table-wrapper">
+        {{ preview_html | safe}}
+    </div>
+</div>

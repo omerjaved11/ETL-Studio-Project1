@@ -25,3 +25,454 @@
 2025-11-19 22:34:40,321 | INFO | __main__ | Starting ETL
 2025-11-19 22:34:40,322 | INFO | utils.db | Started Connetion with PostGress Database
 2025-11-19 22:34:40,586 | INFO | __main__ | Stopping ETL
+2025-11-20 23:15:28,200 | INFO | app | Incoming request: GET /
+2025-11-20 23:15:28,214 | INFO | app | Completed request: GET / -> 200
+2025-11-20 23:15:36,522 | INFO | app | Incoming request: GET /health
+2025-11-20 23:15:36,526 | INFO | app | Health endpoint accessed
+2025-11-20 23:15:36,529 | INFO | app | Completed request: GET /health -> 200
+2025-11-21 14:54:14,575 | INFO | app | Incoming request: GET /health
+2025-11-21 14:54:14,627 | INFO | app | Health endpoint accessed
+2025-11-21 14:54:14,641 | INFO | app | Completed request: GET /health -> 200
+2025-11-24 11:59:54,814 | INFO | app | Incoming request: GET /
+2025-11-24 11:59:54,897 | INFO | app | Completed request: GET / -> 200
+2025-11-24 11:59:54,926 | INFO | app | Incoming request: GET /static/css/style.css
+2025-11-24 11:59:55,377 | INFO | app | Completed request: GET /static/css/style.css -> 200
+2025-11-24 11:59:55,998 | INFO | app | Incoming request: GET /favicon.ico
+2025-11-24 11:59:56,003 | INFO | app | Completed request: GET /favicon.ico -> 404
+2025-11-24 12:55:08,167 | INFO | app | Incoming request: GET /health
+2025-11-24 12:55:08,179 | INFO | app | Health endpoint accessed
+2025-11-24 12:55:08,183 | INFO | app | Completed request: GET /health -> 200
+2025-11-24 13:59:48,715 | INFO | app | Incoming request: GET /health
+2025-11-24 13:59:48,717 | INFO | app | Health endpoint accessed
+2025-11-24 13:59:48,718 | INFO | app | Completed request: GET /health -> 200
+2025-11-24 13:59:54,128 | INFO | app | Incoming request: GET /
+2025-11-24 13:59:54,222 | INFO | app | Completed request: GET / -> 200
+2025-11-24 13:59:57,442 | INFO | app | Incoming request: GET /
+2025-11-24 13:59:57,443 | INFO | app | Completed request: GET / -> 200
+2025-11-24 13:59:59,077 | INFO | app | Incoming request: GET /sources
+2025-11-24 13:59:59,109 | INFO | app | Completed request: GET /sources -> 200
+2025-11-24 14:00:23,708 | INFO | app | Incoming request: POST /source/upload
+2025-11-24 14:00:23,709 | INFO | app | Completed request: POST /source/upload -> 404
+2025-11-24 14:00:41,835 | INFO | app | Incoming request: POST /source/upload
+2025-11-24 14:00:41,836 | INFO | app | Completed request: POST /source/upload -> 404
+2025-11-24 14:01:36,144 | INFO | app | Incoming request: POST /source/upload
+2025-11-24 14:01:36,155 | INFO | app | Completed request: POST /source/upload -> 404
+2025-11-24 14:01:39,509 | INFO | app | Incoming request: GET /sources
+2025-11-24 14:01:39,529 | INFO | app | Completed request: GET /sources -> 200
+2025-11-24 14:01:45,344 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:01:45,344 | INFO | app | Completed request: POST /sources/upload -> 404
+2025-11-24 14:06:02,206 | INFO | app | Incoming request: GET /sources
+2025-11-24 14:06:02,214 | INFO | app | Completed request: GET /sources -> 200
+2025-11-24 14:06:15,343 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:06:15,343 | INFO | app | Completed request: POST /sources/upload -> 404
+2025-11-24 14:07:44,991 | INFO | app | Incoming request: GET /sources
+2025-11-24 14:07:44,998 | INFO | app | Completed request: GET /sources -> 200
+2025-11-24 14:07:50,879 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:07:50,884 | INFO | app | Completed request: POST /sources/upload -> 422
+2025-11-24 14:07:56,525 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:07:56,526 | INFO | app | Completed request: POST /sources/upload -> 422
+2025-11-24 14:09:04,555 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:09:04,557 | INFO | app | Completed request: POST /sources/upload -> 422
+2025-11-24 14:09:05,725 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:09:05,727 | INFO | app | Completed request: POST /sources/upload -> 422
+2025-11-24 14:16:25,871 | INFO | app | Incoming request: GET /
+2025-11-24 14:16:25,873 | INFO | src.web.routes | Rendering home page
+2025-11-24 14:16:25,879 | INFO | app | Completed request: GET / -> 200
+2025-11-24 14:16:33,441 | INFO | app | Incoming request: GET /sources
+2025-11-24 14:16:33,441 | INFO | src.web.routes | Rendering sources page
+2025-11-24 14:16:33,444 | INFO | app | Completed request: GET /sources -> 200
+2025-11-24 14:16:41,467 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:16:41,471 | INFO | src.web.routes | Received CSV upload: filename=rural_population_percent.csv, content_type=text/csv
+2025-11-24 14:16:41,480 | ERROR | src.web.routes | Failed to read CSV file: rural_population_percent.csv
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 47, in upload_csv_source
+    df = pd.read_csv(BytesIO(content))
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 3 fields in line 5, saw 63
+
+2025-11-24 14:16:41,499 | INFO | app | Completed request: POST /sources/upload -> 200
+2025-11-24 14:17:45,313 | INFO | app | Incoming request: POST /sources/upload
+2025-11-24 14:17:45,596 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-24 14:17:46,260 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-24 14:17:46,316 | INFO | app | Completed request: POST /sources/upload -> 200
+2025-11-25 14:00:12,661 | INFO | app | Incoming request: GET /sources
+2025-11-25 14:00:12,698 | INFO | src.web.routes | Rendering sources page
+2025-11-25 14:00:12,718 | INFO | app | Completed request: GET /sources -> 200
+2025-11-25 14:00:13,162 | INFO | app | Incoming request: GET /static/css/style.css
+2025-11-25 14:00:13,748 | INFO | app | Completed request: GET /static/css/style.css -> 304
+2025-11-25 14:00:24,222 | INFO | app | Incoming request: POST /sources/upload
+2025-11-25 14:00:24,276 | INFO | src.web.routes | Received CSV upload: filename=population_data.csv, content_type=text/csv
+2025-11-25 14:00:24,394 | ERROR | src.web.routes | Failed to read CSV file: population_data.csv
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 47, in upload_csv_source
+    df = pd.read_csv(BytesIO(content))
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 3 fields in line 5, saw 63
+
+2025-11-25 14:00:24,450 | INFO | app | Completed request: POST /sources/upload -> 200
+2025-11-25 14:00:38,175 | INFO | app | Incoming request: POST /sources/upload
+2025-11-25 14:00:38,225 | INFO | src.web.routes | Received CSV upload: filename=mystery.csv, content_type=text/csv
+2025-11-25 14:00:38,232 | ERROR | src.web.routes | Failed to read CSV file: mystery.csv
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 47, in upload_csv_source
+    df = pd.read_csv(BytesIO(content))
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1898, in _make_engine
+    return mapping[engine](f, **self.options)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "pandas/_libs/parsers.pyx", line 574, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 663, in pandas._libs.parsers.TextReader._get_header
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2053, in pandas._libs.parsers.raise_parser_error
+  File "<frozen codecs>", line 325, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2025-11-25 14:00:38,248 | INFO | app | Completed request: POST /sources/upload -> 200
+2025-11-25 14:00:45,378 | INFO | app | Incoming request: POST /sources/upload
+2025-11-25 14:00:45,385 | INFO | src.web.routes | Received CSV upload: filename=population_data.csv, content_type=text/csv
+2025-11-25 14:00:45,396 | ERROR | src.web.routes | Failed to read CSV file: population_data.csv
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 47, in upload_csv_source
+    df = pd.read_csv(BytesIO(content))
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 3 fields in line 5, saw 63
+
+2025-11-25 14:00:45,408 | INFO | app | Completed request: POST /sources/upload -> 200
+2025-11-25 15:52:10,294 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 15:52:10,444 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 15:52:10,444 | ERROR | src.utils.db | Failed to create/verify data_sources table
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 48, in init_metadata_tables
+    with conn.cursor as cur:
+         ^^^^^^^^^^^
+TypeError: 'method' object does not support the context manager protocol
+2025-11-25 15:52:19,144 | INFO | src.main | Incoming request: GET /
+2025-11-25 15:52:19,145 | INFO | src.web.routes | Rendering home page
+2025-11-25 15:52:19,214 | INFO | src.main | Completed request: GET / -> 200
+2025-11-25 15:52:24,571 | INFO | src.main | Incoming request: GET /sources
+2025-11-25 15:52:24,571 | ERROR | src.utils.db | Failed to fetch data sources table
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 96, in get_all_data_sources
+    with get_db_connection as conn:
+         ^^^^^^^^^^^^^^^^^
+TypeError: 'function' object does not support the context manager protocol
+2025-11-25 15:52:24,572 | ERROR | src.web.routes | Error fetching data sources for sources page
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 32, in sources_page
+    sources = get_all_data_sources()
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 96, in get_all_data_sources
+    with get_db_connection as conn:
+         ^^^^^^^^^^^^^^^^^
+TypeError: 'function' object does not support the context manager protocol
+2025-11-25 15:52:24,573 | INFO | src.web.routes | Rendering sources page with 0 existing sources
+2025-11-25 15:52:24,595 | INFO | src.main | Completed request: GET /sources -> 200
+2025-11-25 15:52:36,896 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 15:52:36,901 | INFO | src.web.routes | Received CSV upload: filename=population_data.csv, content_type=text/csv
+2025-11-25 15:52:36,906 | ERROR | src.web.routes | Failed to read CSV file: population_data.csv
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 63, in upload_csv_source
+    df = pd.read_csv(BytesIO(content))
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 626, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1923, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 234, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 838, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2061, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 3 fields in line 5, saw 63
+
+2025-11-25 15:52:36,963 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 15:52:48,488 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 15:52:48,763 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 15:52:49,326 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 15:54:50,403 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 15:54:50,443 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 15:54:50,444 | ERROR | src.utils.db | Failed to create/verify data_sources table
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 48, in init_metadata_tables
+    with conn.cursor as cur:
+         ^^^^^^^^^^^
+TypeError: 'method' object does not support the context manager protocol
+2025-11-25 15:55:00,209 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 15:55:00,390 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 15:55:00,946 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 15:55:00,947 | ERROR | src.utils.db | Failed to insert data source
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 72, in insert_data_source
+    with get_db_connection as conn:
+         ^^^^^^^^^^^^^^^^^
+TypeError: 'function' object does not support the context manager protocol
+2025-11-25 15:55:00,948 | ERROR | src.web.routes | Failed to insert data source metadata
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 81, in upload_csv_source
+    source_id = insert_data_source(
+        name=file.filename,
+    ...<6 lines>...
+    
+    )
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 72, in insert_data_source
+    with get_db_connection as conn:
+         ^^^^^^^^^^^^^^^^^
+TypeError: 'function' object does not support the context manager protocol
+2025-11-25 15:55:00,965 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 15:56:41,726 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 15:56:41,877 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 15:56:42,348 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 15:56:42,348 | ERROR | src.utils.db | Failed to insert data source
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 72, in insert_data_source
+    with get_db_connection() as conn:
+         ^^^^^^^^^^^^^^^^^
+TypeError: 'function' object does not support the context manager protocol
+2025-11-25 15:56:42,375 | ERROR | src.web.routes | Failed to insert data source metadata
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 81, in upload_csv_source
+    source_id = insert_data_source(
+        name=file.filename,
+    ...<6 lines>...
+    
+    )
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 72, in insert_data_source
+    with get_db_connection() as conn:
+         ^^^^^^^^^^^^^^^^^
+TypeError: 'function' object does not support the context manager protocol
+2025-11-25 15:56:42,385 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 15:56:47,762 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 15:56:47,814 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 15:56:47,814 | ERROR | src.utils.db | Failed to create/verify data_sources table
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 48, in init_metadata_tables
+    with conn.cursor as cur:
+         ^^^^^^^^^^^
+TypeError: 'method' object does not support the context manager protocol
+2025-11-25 15:56:50,831 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 15:56:51,020 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 15:56:51,610 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 15:56:51,639 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 15:56:51,696 | ERROR | src.utils.db | Failed to insert data source
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 74, in insert_data_source
+    cur.execute(
+    ~~~~~~~~~~~^
+        sql,
+        ^^^^
+        (name, source_type, orignial_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         file_path, row_count, column_count, status),)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "data_sources" does not exist
+LINE 2:         Insert into data_sources (name,source_type, original...
+                            ^
+2025-11-25 15:56:51,718 | ERROR | src.web.routes | Failed to insert data source metadata
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 81, in upload_csv_source
+    source_id = insert_data_source(
+        name=file.filename,
+    ...<6 lines>...
+    
+    )
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 74, in insert_data_source
+    cur.execute(
+    ~~~~~~~~~~~^
+        sql,
+        ^^^^
+        (name, source_type, orignial_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         file_path, row_count, column_count, status),)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "data_sources" does not exist
+LINE 2:         Insert into data_sources (name,source_type, original...
+                            ^
+2025-11-25 15:56:51,734 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 15:58:59,804 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 15:58:59,853 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 15:58:59,853 | ERROR | src.utils.db | Failed to create/verify data_sources table
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 48, in init_metadata_tables
+    with conn.cursor as cur:
+         ^^^^^^^^^^^
+TypeError: 'method' object does not support the context manager protocol
+2025-11-25 16:01:53,157 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:01:53,209 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:01:53,380 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:02:03,420 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 16:02:03,566 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 16:02:04,069 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 16:02:04,104 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:02:04,122 | ERROR | src.utils.db | Failed to insert data source
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 78, in insert_data_source
+    new_id = cur.fetchone()["id"]
+             ~~~~~~~~~~~~~~^^^^^^
+TypeError: tuple indices must be integers or slices, not str
+2025-11-25 16:02:04,124 | ERROR | src.web.routes | Failed to insert data source metadata
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\web\routes.py", line 81, in upload_csv_source
+    source_id = insert_data_source(
+        name=file.filename,
+    ...<6 lines>...
+    
+    )
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 78, in insert_data_source
+    new_id = cur.fetchone()["id"]
+             ~~~~~~~~~~~~~~^^^^^^
+TypeError: tuple indices must be integers or slices, not str
+2025-11-25 16:02:04,142 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 16:10:03,593 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:10:03,637 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:10:03,640 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:10:19,646 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:10:19,690 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:10:19,694 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:10:28,882 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 16:10:29,125 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 16:10:29,725 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 16:10:29,755 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:10:29,762 | INFO | src.utils.db | Inserted data_source id=2 name=projects_data.csv, type = csv
+2025-11-25 16:10:29,774 | INFO | src.web.routes | Saved CSV file for source_id=2 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_2.csv
+2025-11-25 16:10:29,830 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 16:22:27,539 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:22:27,587 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:22:27,592 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:22:47,149 | INFO | src.main | Incoming request: GET /sources
+2025-11-25 16:22:47,168 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:22:47,236 | INFO | src.web.routes | Rendering sources page with 1 existing sources
+2025-11-25 16:22:47,247 | INFO | src.main | Completed request: GET /sources -> 200
+2025-11-25 16:22:57,765 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 16:22:58,005 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 16:22:58,557 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 16:22:58,584 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:22:58,593 | INFO | src.utils.db | Inserted data_source id=3 name=projects_data.csv, type = csv
+2025-11-25 16:22:58,604 | INFO | src.web.routes | Saved CSV file for source_id=3 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_3.csv
+2025-11-25 16:22:58,631 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:22:58,634 | ERROR | src.utils.db | Error executing update query: cannot adapt type 'WindowsPath' using placeholder '%s' (format: AUTO)
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 120, in update_source_filepath
+    cur.execute(sql,(source_id,target_file))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.ProgrammingError: cannot adapt type 'WindowsPath' using placeholder '%s' (format: AUTO)
+2025-11-25 16:26:53,726 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:26:53,770 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:26:53,774 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:26:58,512 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 16:26:58,683 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 16:26:59,180 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 16:26:59,219 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:26:59,226 | INFO | src.utils.db | Inserted data_source id=4 name=projects_data.csv, type = csv
+2025-11-25 16:26:59,238 | INFO | src.web.routes | Saved CSV file for source_id=4 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_4.csv
+2025-11-25 16:26:59,259 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:26:59,262 | ERROR | src.utils.db | Error executing update query: cannot adapt type 'WindowsPath' using placeholder '%s' (format: AUTO)
+Traceback (most recent call last):
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\src\utils\db.py", line 120, in update_source_filepath
+    cur.execute(sql,(target_file,source_id))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\.venv\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.ProgrammingError: cannot adapt type 'WindowsPath' using placeholder '%s' (format: AUTO)
+2025-11-25 16:27:59,369 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:27:59,416 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:27:59,420 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:28:09,671 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 16:28:09,855 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 16:28:10,412 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 16:28:10,435 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:28:10,443 | INFO | src.utils.db | Inserted data_source id=5 name=projects_data.csv, type = csv
+2025-11-25 16:28:10,455 | INFO | src.web.routes | Saved CSV file for source_id=5 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_5.csv
+2025-11-25 16:28:10,482 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:28:10,531 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-25 16:33:14,038 | INFO | src.main | Staring ETL BUILder Application
+2025-11-25 16:33:14,085 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:33:14,089 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-25 16:33:19,085 | INFO | src.main | Incoming request: GET /sources
+2025-11-25 16:33:19,122 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:33:19,141 | INFO | src.web.routes | Rendering sources page with 4 existing sources
+2025-11-25 16:33:19,155 | INFO | src.main | Completed request: GET /sources -> 200
+2025-11-25 16:33:26,512 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-25 16:33:26,741 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-25 16:33:27,268 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-25 16:33:27,306 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:33:27,315 | INFO | src.utils.db | Inserted data_source id=6 name=projects_data.csv, type = csv
+2025-11-25 16:33:27,326 | INFO | src.web.routes | Saved CSV file for source_id=6 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_6.csv
+2025-11-25 16:33:27,349 | INFO | src.utils.db | Successfully connected to database
+2025-11-25 16:33:27,389 | INFO | src.main | Completed request: POST /sources/upload -> 200
