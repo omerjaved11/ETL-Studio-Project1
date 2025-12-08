@@ -1,0 +1,47 @@
+<div class="validation-report">
+    <h4>Validation Report (rows: {{ row_count }})</h4>
+
+    {% if report and report|length > 0 %}
+    <form
+        hx-post="/sources/{{ source_id }}/clean/drop-columns"
+        hx-target="#preview-area"
+        hx-swap="innerHTML"
+        method="post"
+    >
+        <table class="validation-table">
+            <thead>
+                <tr>
+                    <th>Drop?</th>
+                    <th>Column</th>
+                    <th>Dtype</th>
+                    <th>Null Count</th>
+                    <th>Null %</th>
+                    <th>Example Values</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for col in report %}
+            {% if col.null_count > 0%}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="columns" value="{{ col.name }}">
+                    </td>
+                    <td>{{ col.name }}</td>
+                    <td>{{ col.dtype }}</td>
+                    <td>{{ col.null_count }}</td>
+                    <td>{{ col.null_pct }}%</td>
+                    <td>{{ col.sample_values }}</td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="submit">
+            Drop selected columns &amp; update preview
+        </button>
+    </form>
+    {% else %}
+        <p>No columns found.</p>
+    {% endif %}
+</div>

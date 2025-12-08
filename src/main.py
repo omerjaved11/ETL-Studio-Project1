@@ -5,7 +5,7 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from src.utils.db import init_metadata_tables
-from src.utils.logger import get_logger
+from src.utils.logger import get_logger,setup_logging
 from .web.routes import router as web_router  # adjust if your structure differs
 
 # --------------------------
@@ -16,6 +16,7 @@ TEMPLATES_DIR = BASE_DIR / "templates"
 STATIC_DIR = BASE_DIR / "static"
 
 # App logger (separate name from ETL, but same config)
+setup_logging()
 logger = get_logger(__name__)
 logger.info("Staring ETL BUILder Application")
 
@@ -33,6 +34,16 @@ init_metadata_tables()
 # --------------------------
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 app.state.templates = templates
+
+# In-memory workspace: DataFrames per source_id
+# { source_id (int): pandas.DataFrame }
+app.state.df_store = {}  # type: ignore[attr-defined]
+app.state.pipeline_store = {}    # type: ignore[attr-defined]
+
+# --------------------------
+# Static Files
+# --------------------------
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 # --------------------------
@@ -52,13 +63,6 @@ async def log_requests(request: Request, call_next):
     )
 
     return response
-
-
-# --------------------------
-# Static Files
-# --------------------------
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
-
 
 # --------------------------
 # Routers

@@ -1,0 +1,62 @@
+<div>
+    {% if sources and sources|length > 0 %}
+    <form
+        id="delete-sources-form"
+        hx-post="/sources/delete"
+        hx-target="#sources-table-container"
+        hx-swap="innerHTML"
+        method="post"
+    >
+        <table class="sources-table">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Original Name</th>
+                    <th>Rows</th>
+                    <th>Columns</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for s in sources %}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="source_ids" value="{{ s.id }}">
+                    </td>
+                    <td>{{ s.id }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.source_type }}</td>
+                    <td>{{ s.original_name }}</td>
+                    <td>{{ s.row_count }}</td>
+                    <td>{{ s.column_count }}</td>
+                    <td>{{ s.status }}</td>
+                    <td>{{ s.created_at }}</td>
+                    <td>
+                        <!-- Open uses HTMX directly on the button (no extra form) -->
+                        <button
+                            type="button"
+                            hx-post="/sources/{{ s.id }}/open"
+                            hx-target="#preview-area"
+                            hx-swap="innerHTML"
+                        >
+                            Open
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="submit">
+            Delete selected
+        </button>
+    </form>
+    {% else %}
+        <p>No sources defined yet. Upload a CSV to create your first source.</p>
+    {% endif %}
+</div>

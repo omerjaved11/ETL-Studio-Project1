@@ -476,3 +476,112 @@ psycopg.ProgrammingError: cannot adapt type 'WindowsPath' using placeholder '%s'
 2025-11-25 16:33:27,326 | INFO | src.web.routes | Saved CSV file for source_id=6 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_6.csv
 2025-11-25 16:33:27,349 | INFO | src.utils.db | Successfully connected to database
 2025-11-25 16:33:27,389 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-11-26 11:31:01,268 | INFO | src.main | Staring ETL BUILder Application
+2025-11-26 11:31:01,455 | INFO | src.utils.db | Successfully connected to database
+2025-11-26 11:31:01,477 | INFO | src.utils.db | Ensured data_sources table exists
+2025-11-26 11:31:04,446 | INFO | src.main | Incoming request: GET /
+2025-11-26 11:31:04,448 | INFO | src.web.routes | Rendering home page
+2025-11-26 11:31:04,567 | INFO | src.main | Completed request: GET / -> 200
+2025-11-26 11:31:04,607 | INFO | src.main | Incoming request: GET /static/css/style.css
+2025-11-26 11:31:05,112 | INFO | src.main | Completed request: GET /static/css/style.css -> 304
+2025-11-26 11:31:35,141 | INFO | src.main | Incoming request: GET /sources
+2025-11-26 11:31:35,240 | INFO | src.utils.db | Successfully connected to database
+2025-11-26 11:31:35,484 | INFO | src.web.routes | Rendering sources page with 5 existing sources
+2025-11-26 11:31:35,549 | INFO | src.main | Completed request: GET /sources -> 200
+2025-11-26 11:31:50,328 | INFO | src.main | Incoming request: POST /sources/upload
+2025-11-26 11:31:50,908 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-11-26 11:31:52,044 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-11-26 11:31:52,091 | INFO | src.utils.db | Successfully connected to database
+2025-11-26 11:31:52,121 | INFO | src.utils.db | Inserted data_source id=7 name=projects_data.csv, type = csv
+2025-11-26 11:31:52,140 | INFO | src.web.routes | Saved CSV file for source_id=7 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_7.csv
+2025-11-26 11:31:52,184 | INFO | src.utils.db | Successfully connected to database
+2025-11-26 11:31:52,310 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-12-01 12:19:26,475 | INFO | src.main | Staring ETL BUILder Application
+2025-12-01 12:19:26,629 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:19:26,652 | INFO | src.utils.db | Ensured data_sources table exists
+2025-12-01 12:19:29,915 | INFO | src.main | Incoming request: GET /
+2025-12-01 12:19:29,917 | INFO | src.web.routes | Rendering home page
+2025-12-01 12:19:29,991 | INFO | src.main | Completed request: GET / -> 200
+2025-12-01 12:19:30,028 | INFO | src.main | Incoming request: GET /static/css/style.css
+2025-12-01 12:19:30,435 | INFO | src.main | Completed request: GET /static/css/style.css -> 304
+2025-12-01 12:19:33,364 | INFO | src.main | Incoming request: GET /sources
+2025-12-01 12:19:33,433 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:19:33,624 | INFO | src.web.routes | Rendering sources page with 6 existing sources
+2025-12-01 12:19:33,670 | INFO | src.main | Completed request: GET /sources -> 200
+2025-12-01 12:19:49,258 | INFO | src.main | Incoming request: POST /sources/upload
+2025-12-01 12:19:49,573 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-12-01 12:19:50,148 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-12-01 12:19:50,178 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:19:50,205 | INFO | src.utils.db | Inserted data_source id=8 name=projects_data.csv, type = csv
+2025-12-01 12:19:50,217 | INFO | src.web.routes | Saved CSV file for source_id=8 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_8.csv
+2025-12-01 12:19:50,255 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:19:50,339 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-12-01 12:19:59,338 | INFO | src.main | Incoming request: POST /sources/8/validate
+2025-12-01 12:20:30,707 | INFO | src.main | Staring ETL BUILder Application
+2025-12-01 12:20:30,752 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:20:30,756 | INFO | src.utils.db | Ensured data_sources table exists
+2025-12-01 12:20:43,746 | INFO | src.main | Incoming request: POST /sources/8/validate
+2025-12-01 12:20:44,441 | INFO | src.web.routes | Validation done for source_id = 8
+2025-12-01 12:20:44,469 | INFO | src.main | Completed request: POST /sources/8/validate -> 200
+2025-12-01 12:22:53,372 | INFO | src.main | Staring ETL BUILder Application
+2025-12-01 12:22:53,419 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:22:53,423 | INFO | src.utils.db | Ensured data_sources table exists
+2025-12-01 12:23:00,216 | INFO | src.main | Incoming request: POST /sources/8/validate
+2025-12-01 12:23:00,892 | INFO | src.web.routes | Validation done for source_id = 8
+2025-12-01 12:23:00,933 | INFO | src.main | Completed request: POST /sources/8/validate -> 200
+2025-12-01 12:23:49,614 | INFO | src.main | Staring ETL BUILder Application
+2025-12-01 12:23:49,660 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 12:23:49,665 | INFO | src.utils.db | Ensured data_sources table exists
+2025-12-01 12:23:52,382 | INFO | src.main | Incoming request: POST /sources/8/validate
+2025-12-01 12:23:53,050 | INFO | src.web.routes | Validation done for source_id = 8
+2025-12-01 12:23:53,090 | INFO | src.main | Completed request: POST /sources/8/validate -> 200
+2025-12-01 12:37:13,170 | INFO | src.main | Incoming request: POST /sources/8/clean/drop-null-rows
+2025-12-01 12:37:13,726 | INFO | src.web.routes | Cleaned source_id=8: dropped 18248 rows (from 18248 to 0). Saved to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_8_clean.csv
+2025-12-01 12:37:13,735 | INFO | src.main | Completed request: POST /sources/8/clean/drop-null-rows -> 200
+2025-12-01 14:41:24,378 | INFO | src.main | Staring ETL BUILder Application
+2025-12-01 14:41:24,496 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:41:24,515 | INFO | src.utils.db | Ensured data_sources table exists
+2025-12-01 14:42:47,789 | INFO | src.main | Incoming request: POST /sources/upload
+2025-12-01 14:42:48,014 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-12-01 14:42:48,549 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-12-01 14:42:48,585 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:42:48,636 | INFO | src.utils.db | Inserted data_source id=9 name=projects_data.csv, type = csv
+2025-12-01 14:42:48,648 | INFO | src.web.routes | Saved CSV file for source_id=9 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_9.csv
+2025-12-01 14:42:48,678 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:42:48,783 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-12-01 14:42:57,934 | INFO | src.main | Incoming request: POST /sources/9/validate
+2025-12-01 14:42:58,584 | INFO | src.web.routes | Validation done for source_id = 9
+2025-12-01 14:42:58,616 | INFO | src.main | Completed request: POST /sources/9/validate -> 200
+2025-12-01 14:44:54,670 | INFO | src.main | Staring ETL BUILder Application
+2025-12-01 14:44:54,716 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:44:54,720 | INFO | src.utils.db | Ensured data_sources table exists
+2025-12-01 14:45:08,909 | INFO | src.main | Incoming request: GET /sources
+2025-12-01 14:45:08,940 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:45:09,001 | INFO | src.web.routes | Rendering sources page with 8 existing sources
+2025-12-01 14:45:09,039 | INFO | src.main | Completed request: GET /sources -> 200
+2025-12-01 14:45:40,557 | INFO | src.main | Incoming request: POST /sources/upload
+2025-12-01 14:45:40,729 | INFO | src.web.routes | Received CSV upload: filename=projects_data.csv, content_type=text/csv
+2025-12-01 14:45:41,332 | INFO | src.web.routes | CSV parsed successfully: filename=projects_data.csv, shape=(18248, 57)
+2025-12-01 14:45:41,366 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:45:41,379 | INFO | src.utils.db | Inserted data_source id=10 name=projects_data.csv, type = csv
+2025-12-01 14:45:41,391 | INFO | src.web.routes | Saved CSV file for source_id=10 to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_10.csv
+2025-12-01 14:45:41,421 | INFO | src.utils.db | Successfully connected to database
+2025-12-01 14:45:41,476 | INFO | src.main | Completed request: POST /sources/upload -> 200
+2025-12-01 14:45:45,291 | INFO | src.main | Incoming request: POST /sources/10/validate
+2025-12-01 14:45:46,182 | INFO | src.web.routes | Validation done for source_id = 10
+2025-12-01 14:45:46,211 | INFO | src.main | Completed request: POST /sources/10/validate -> 200
+2025-12-01 14:46:28,648 | INFO | src.main | Incoming request: POST /sources/10/clean/drop-columns
+2025-12-01 14:46:30,752 | INFO | src.web.routes | Dropped columns for source_id=10: ['projectdoc ', 'majorsector_percent ', 'mjsector1', 'mjsector2', 'mjsector3', 'mjsector4', 'mjsector5', 'mjtheme1name', 'mjtheme2name', 'mjtheme3name', 'mjtheme4name', 'mjtheme5name', 'Unnamed: 56'] (from 57 cols to 44). Saved to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_10_clean.csv
+2025-12-01 14:46:30,786 | INFO | src.main | Completed request: POST /sources/10/clean/drop-columns -> 200
+2025-12-01 14:46:37,716 | INFO | src.main | Incoming request: POST /sources/10/validate
+2025-12-01 14:46:38,380 | INFO | src.web.routes | Validation done for source_id = 10
+2025-12-01 14:46:38,388 | INFO | src.main | Completed request: POST /sources/10/validate -> 200
+2025-12-01 14:48:05,055 | INFO | src.main | Incoming request: POST /sources/10/clean/drop-columns
+2025-12-01 14:48:05,543 | INFO | src.web.routes | No columns selected to drop for source_id=10
+2025-12-01 14:48:05,563 | INFO | src.main | Completed request: POST /sources/10/clean/drop-columns -> 200
+2025-12-01 14:48:52,633 | INFO | src.main | Incoming request: POST /sources/10/validate
+2025-12-01 14:48:53,259 | INFO | src.web.routes | Validation done for source_id = 10
+2025-12-01 14:48:53,268 | INFO | src.main | Completed request: POST /sources/10/validate -> 200
+2025-12-01 14:49:08,006 | INFO | src.main | Incoming request: POST /sources/10/clean/drop-columns
+2025-12-01 14:49:09,321 | INFO | src.web.routes | Dropped columns for source_id=10: ['mjsector1', 'mjsector2', 'mjsector3', 'mjsector4', 'mjsector5'] (from 44 cols to 44). Saved to C:\Users\omerj\Documents\Revature\Project_1\Revature-Cognizant-Project1\data\sources\source_10_clean.csv
+2025-12-01 14:49:09,343 | INFO | src.main | Completed request: POST /sources/10/clean/drop-columns -> 200

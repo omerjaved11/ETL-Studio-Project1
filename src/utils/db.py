@@ -1,7 +1,7 @@
-from typing import Dict, List, Optional
+from typing import List, Dict, Optional, Iterable
 import psycopg
 from psycopg.rows import dict_row
-
+from typing import Iterable
 from src.utils.config import config
 from src.utils.logger import get_logger
 
@@ -121,4 +121,74 @@ def update_source_filepath(source_id: int, target_file: str):
     except psycopg.Error as e:
         logger.exception(f"Error executing update query: {e}")
         # logger.exception("Failed to updated data sources table")
+        raise
+
+
+
+def update_data_source_shape(source_id: int, row_count: int, column_count: int) -> None:
+    """
+    Update row_count and column_count for a given data source.
+    """
+    sql = """
+    UPDATE data_sources
+    SET row_count = %s,
+        column_count = %s
+    WHERE id = %s;
+    """
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(sql, (row_count, column_count, source_id))
+            conn.commit()
+        logger.info(
+            "Updated data_source id=%s with shape=(%d, %d)",
+            source_id, row_count, column_count
+        )
+    except Exception:
+        logger.exception("Failed to update data source shape for id=%s", source_id)
+        raise
+
+
+def delete_data_sources(ids: Iterable[int]) -> None:
+    """
+    Delete one or more data_sources records by ID.
+    (Does NOT touch files; routes will handle file/df cleanup.)
+    """
+    ids = list(ids)
+    if not ids:
+        return
+
+    sql = "DELETE FROM data_sources WHERE id = %s"
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                for sid in ids:
+                    cur.execute(sql, (sid,))
+            conn.commit()
+        logger.info("Deleted %d data_sources rows: %s", len(ids), ids)
+    except Exception:
+        logger.exception("Failed to delete data sources: %s", ids)
+        raise
+
+def get_data_source_by_id(source_id: int) -> Optional[Dict]:
+    """
+    Fetch a single data_source row by ID as a dict, or None if not found.
+    """
+    sql = """
+    SELECT id, name, source_type, original_name, file_path,
+           row_count, column_count, status, created_at
+    FROM data_sources
+    WHERE id = %s;
+    """
+    try:
+        with get_db_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(sql, (source_id,))
+                row = cur.fetchone()
+                if not row:
+                    return None
+                col_names = [desc[0] for desc in cur.description]
+        return dict(zip(col_names, row))
+    except Exception:
+        logger.exception("Failed to fetch data source by id=%s", source_id)
         raise

@@ -1,11 +1,86 @@
 <div class="source-preview">
     <h3>Preview: {{ filename }}</h3>
+
     {% if source_id %}
-        <p>Source Id: <code>{{ source_id }}</code></p>
-    {% endif%}
-    <p>Showing first 10 rows.</p>
+        <p>Working on Source ID: <code>{{ source_id }}</code></p>
+    {% endif %}
 
     <div class="table-wrapper">
-        {{ preview_html | safe}}
+        {{ preview_html | safe }}
+    </div>
+
+    {% if source_id %}
+    <div class="actions">
+        <!-- Run validation: null counts, dtypes, etc. -->
+        <form
+            hx-post="/sources/{{ source_id }}/validate"
+            hx-target="#validation-area"
+            hx-swap="innerHTML"
+            method="post"
+        >
+            <button type="submit">Run Validation</button>
+        </form>
+
+        <!-- Clean: drop rows with any nulls -->
+        <form
+            hx-post="/sources/{{ source_id }}/clean/drop-null-rows"
+            hx-target="#preview-area"
+            hx-swap="innerHTML"
+            method="post"
+        >
+            <button type="submit">Drop rows with any nulls &amp; update preview</button>
+        </form>
+
+        <!-- Save current in-memory DataFrame back to disk + DB -->
+        <form
+            hx-post="/sources/{{ source_id }}/save"
+            hx-target="#preview-area"
+            hx-swap="innerHTML"
+            method="post"
+        >
+            <button type="submit">Save current state</button>
+        </form>
+        
+        <!-- Show pipeline config as JSON -->
+        <form
+            hx-post="/sources/{{ source_id }}/export-config"
+            hx-target="#validation-area"
+            hx-swap="innerHTML"
+            method="post"
+        >
+            <button type="submit">Show pipeline config (JSON)</button>
+        </form>
+                <!-- Reset to raw & replay pipeline -->
+        <form
+            hx-post="/sources/{{ source_id }}/replay"
+            hx-target="#preview-area"
+            hx-swap="innerHTML"
+            method="post"
+        >
+            <button type="submit">Reset to raw &amp; replay pipeline</button>
+        </form>
+        
+        <form 
+        hx-post = "/source{{ source_id }}/load"
+        hx-target = "#validate-area"
+        hx-swap="innerHTML"
+        method="post">
+        <label> Target table:
+            <input type="text" name="target_table" placeholder="my_table" required>
+        </label>
+        <label>
+            Mode:
+            <select name="mode">
+                <option value="overwirte">overwrite</option>
+                <option value="append">append</option>
+            </select>
+        </label>
+        <button type="submit">Load to DB</button>
+    </form>
+    </div>
+    {% endif %}
+
+    <div id="validation-area">
+        <!-- Validation + drop-columns UI will appear here -->
     </div>
 </div>
