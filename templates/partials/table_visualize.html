@@ -1,0 +1,98 @@
+<div class="card card--nested">
+    <div class="card__header card__header--compact">
+        <h4 class="card__title">Visualizations: {{ table_name }}</h4>
+        {% if error %}
+            <p class="card__subtitle" style="color:#f87171;">
+                Error: {{ error }}
+            </p>
+        {% else %}
+            <p class="card__subtitle">
+                Interactive charts built from a sample of the table.
+            </p>
+        {% endif %}
+    </div>
+
+    <div class="card__body">
+        {% if error %}
+            <p class="muted-text">Could not generate charts for this table.</p>
+        {% else %}
+            <div>
+                <h5>Numeric columns</h5>
+                <div id="numeric-plots" class="plots-grid"></div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <h5>Categorical / text columns</h5>
+                <div id="categorical-plots" class="plots-grid"></div>
+            </div>
+
+            <script>
+                (function() {
+                    const numericData = {{ numeric_data_json | safe }};
+                    const categoricalData = {{ categorical_data_json | safe }};
+
+                    function renderPlots() {
+                        const numContainer = document.getElementById("numeric-plots");
+                        const catContainer = document.getElementById("categorical-plots");
+
+                        if (!numContainer || !catContainer || !window.Plotly) return;
+
+                        numContainer.innerHTML = "";
+                        catContainer.innerHTML = "";
+
+                        // Numeric histograms
+                        numericData.forEach((trace, idx) => {
+                            const div = document.createElement("div");
+                            div.id = `num-plot-${idx}`;
+                            div.className = "plotly-chart";
+                            numContainer.appendChild(div);
+
+                            Plotly.newPlot(
+                                div.id,
+                                [{
+                                    x: trace.values,
+                                    type: "histogram",
+                                }],
+                                {
+                                    title: `Histogram of ${trace.col}`,
+                                    margin: {t: 40, l: 40, r: 10, b: 40},
+                                },
+                                {displayModeBar: false}
+                            );
+                        });
+
+                        // Categorical bar charts
+                        categoricalData.forEach((trace, idx) => {
+                            const div = document.createElement("div");
+                            div.id = `cat-plot-${idx}`;
+                            div.className = "plotly-chart";
+                            catContainer.appendChild(div);
+
+                            Plotly.newPlot(
+                                div.id,
+                                [{
+                                    x: trace.labels,
+                                    y: trace.values,
+                                    type: "bar",
+                                }],
+                                {
+                                    title: `Top values for ${trace.col}`,
+                                    margin: {t: 40, l: 40, r: 10, b: 80},
+                                    xaxis: {tickangle: -45},
+                                },
+                                {displayModeBar: false}
+                            );
+                        });
+                    }
+
+                    // For normal page load
+                    document.addEventListener("DOMContentLoaded", renderPlots);
+                    // For HTMX swaps
+                    document.addEventListener("htmx:afterSettle", renderPlots);
+                    // Call once right away in case this partial was just inserted.
+                    renderPlots();
+                })();
+            </script>
+        {% endif %}
+    </div>
+</div>

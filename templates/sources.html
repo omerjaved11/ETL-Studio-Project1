@@ -7,31 +7,24 @@
     <div>
         <h2>Data Sources</h2>
         <p class="page-header__subtitle">
-            Register raw inputs, preview them, and build your transformation pipeline.
+            Upload CSVs, validate, clean, and load into PostgreSQL.
         </p>
     </div>
 </section>
 
-<section class="grid grid--two-columns">
-    <!-- LEFT: Existing sources -->
-    <div class="card">
-        <div class="card__header">
-            <h3 class="card__title">Existing Sources</h3>
-            <p class="card__subtitle">Select a source and open it to work on it.</p>
-        </div>
-
-        <div id="sources-table-wrapper">
-            {% include "partials/sources_table.html" %}
-        </div>
+<section class="card">
+    <div class="card__header">
+        <h3 class="card__title">Existing Sources</h3>
     </div>
+    <div id="sources-table">
+        {% include "partials/sources_table.html" %}
+    </div>
+</section>
 
-    <!-- RIGHT: Upload + Preview -->
-    <div class="card">
-        <div class="card__header">
-            <h3 class="card__title">Upload New Source</h3>
-            <p class="card__subtitle">Start by uploading a CSV file. Transform options come next.</p>
-        </div>
-
+<section class="card" style="margin-top: 1.5rem;">
+    <div class="card__header">
+        <h3 class="card__title">Upload New Source</h3>
+    </div>
         <form
             id="csv-upload-form"
             class="form form--inline"

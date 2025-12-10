@@ -406,3 +406,53 @@ html, body {
 .validation-area {
     margin-top: 0.8rem;
 }
+
+.plots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.plotly-chart {
+    background: #020617;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+
+/* Navigation Bar */
+.navbar {
+    background: #0f172a; /* dark blue */
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.navbar-left {
+    display: flex;
+    gap: 1.4rem;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: 0.3rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover {
+    color: #38bdf8;
+    background-color: rgba(255,255,255,0.08);
+}

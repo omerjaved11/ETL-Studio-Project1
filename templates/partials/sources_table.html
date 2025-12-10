@@ -1,45 +1,70 @@
 {% if sources and sources|length > 0 %}
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Rows</th>
-            <th>Columns</th>
-            <th>Status</th>
-            <th>Created</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for s in sources %}
-        <tr>
-            <td>
-                <form
-                    hx-post="/sources/{{ s.id }}/open"
-                    hx-target="#preview-area"
-                    hx-swap="innerHTML"
-                    method="post"
-                >
-                    <button type="submit" class="btn btn--tiny">Open</button>
-                </form>
-            </td>
-            <td>{{ s.id }}</td>
-            <td>{{ s.name }}</td>
-            <td>{{ s.source_type }}</td>
-            <td>{{ s.row_count }}</td>
-            <td>{{ s.column_count }}</td>
-            <td>
-                <span class="badge badge--{{ s.status|default('ready') }}">
-                    {{ s.status|capitalize }}
-                </span>
-            </td>
-            <td>{{ s.created_at }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+<form
+    hx-post="/sources/delete"
+    hx-target="#sources-table"
+    hx-swap="innerHTML"
+    method="post"
+    class="sources-delete-form"
+>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input
+                        type="checkbox"
+                        id="select-all-sources"
+                        onclick="document.querySelectorAll('.source-checkbox').forEach(cb => cb.checked = this.checked);"
+                    >
+                </th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Rows</th>
+                <th>Columns</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for s in sources %}
+            <tr>
+                <td>
+                    <input
+                        type="checkbox"
+                        class="source-checkbox"
+                        name="source_ids"
+                        value="{{ s.id }}"
+                    >
+                </td>
+                <td><code>{{ s.id }}</code></td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.source_type }}</td>
+                <td>{{ s.row_count or "?" }}</td>
+                <td>{{ s.column_count or "?" }}</td>
+                <td>{{ s.status or "unknown" }}</td>
+                <td>
+                    <!-- Open / preview (NO nested form, just button with hx-post) -->
+                    <button
+                        type="button"
+                        class="btn btn--tiny"
+                        hx-post="/sources/{{ s.id }}/open"
+                        hx-target="#preview-area"
+                        hx-swap="innerHTML"
+                    >
+                        Open
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="sources-delete-actions">
+        <button type="submit" class="btn btn--danger">
+            Delete selected
+        </button>
+    </div>
+</form>
 {% else %}
-<p class="muted-text">No sources defined yet. Upload a CSV to create your first source.</p>
+    <p class="muted-text">No data sources found yet. Upload a CSV to get started.</p>
 {% endif %}

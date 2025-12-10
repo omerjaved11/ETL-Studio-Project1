@@ -280,3 +280,82 @@ def load_dataframe_to_table(
 
         conn.commit()
         logger.info("[DB-LOAD] Commit successful for table '%s'", table_name)
+
+def list_user_tables(schema: str = "public") -> list[dict]:
+    """
+    Return a list of tables in the given schema.
+    Each item: {"table_name": str, "schema": str, "row_estimate": int | None}
+    """
+    query = """
+    SELECT
+        c.relname AS table_name,
+        n.nspname AS schema_name,
+        pg_catalog.pg_relation_size(c.oid) as size_bytes,
+        c.reltuples AS row_estimate
+    FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+    LEFT JOIN pg_stat_user_tables s ON s.relname = c.relname
+    WHERE c.relkind = 'r'
+      AND n.nspname = %s
+    ORDER BY c.relname;
+    """
+
+    tables: list[dict] = []
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(query, (schema,))
+            for table_name, schema_name, size_bytes, row_estimate in cur.fetchall():
+                tables.append(
+                    {
+                        "table_name": table_name,
+                        "schema": schema_name,
+                        "row_estimate": int(row_estimate) if row_estimate is not None else None,
+                        "size_bytes": int(size_bytes) if size_bytes is not None else None,
+                    }
+                )
+
+    logger.info("[DB] Found %d tables in schema '%s'", len(tables), schema)
+    return tables
+
+
+def _validate_table_name(table_name: str) -> str:
+    """
+    Same basic validation as load_dataframe_to_table.
+    Ensure only letters, digits, and underscores.
+    """
+    if not str(table_name).replace("_", "").isalnum():
+        raise ValueError(f"Invalid table name: {table_name}")
+    return table_name
+
+
+def read_table_head(table_name: str, limit: int = 10) -> pd.DataFrame:
+    """
+    fetch data head as df.
+    """
+    table_name = _validate_table_name(table_name)
+
+    with get_db_connection() as conn:
+        query = sql.SQL("SELECT * FROM {} LIMIT %s").format(sql.Identifier(table_name))
+        df = pd.read_sql_query(query.as_string(conn), conn, params=(limit,))
+
+    logger.info("[DB] Read head of table '%s' (%d rows)", table_name, len(df))
+    return df
+
+
+def read_table_as_df(table_name: str, limit: int | None = None) -> pd.DataFrame:
+    """
+    fetch table as df
+    """
+    table_name = _validate_table_name(table_name)
+
+    with get_db_connection() as conn:
+        if limit is not None:
+            query = sql.SQL("SELECT * FROM {} LIMIT %s").format(sql.Identifier(table_name))
+            df = pd.read_sql_query(query.as_string(conn), conn, params=(limit,))
+        else:
+            query = sql.SQL("SELECT * FROM {}").format(sql.Identifier(table_name))
+            df = pd.read_sql_query(query.as_string(conn), conn)
+
+    logger.info("[DB] Read table '%s' (%d rows, %d cols)", table_name, *df.shape)
+    return df
+

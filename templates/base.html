@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}ETL Builder{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
 </head>
 <body>
@@ -18,16 +18,21 @@
                 </div>
             </div>
             <nav class="app-nav">
-                <a href="/" class="nav-link {% if request.url.path == '/' %}nav-link--active{% endif %}">
-                    Home
-                </a>
-                <a href="/sources" class="nav-link {% if request.url.path.startswith('/sources') %}nav-link--active{% endif %}">
-                    Sources
-                </a>
-                <a href="/etls" class="nav-link {% if request.url.path.startswith('/etls') %}nav-link--active{% endif %}">
-                    ETLs
-                </a>
-            </nav>
+    <a href="/" class="nav-link {% if request.url.path == '/' %}nav-link--active{% endif %}">
+        Home
+    </a>
+    <a href="/sources" class="nav-link {% if request.url.path.startswith('/sources') %}nav-link--active{% endif %}">
+        Sources
+    </a>
+    <a href="/etls" class="nav-link {% if request.url.path.startswith('/etls') %}nav-link--active{% endif %}">
+        ETLs
+    </a>
+    <a href="/tables" class="nav-link {% if request.url.path.startswith('/tables') %}nav-link--active{% endif %}">
+        Tables
+    </a>
+</nav>
+    
+        </nav>
         </header>
 
         <main class="app-main">

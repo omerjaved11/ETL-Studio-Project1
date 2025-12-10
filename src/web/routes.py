@@ -1,7 +1,10 @@
 # src/web/routes.py
 import json
-from fastapi import APIRouter, Request, UploadFile, File, HTTPException, Form
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi import APIRouter, Request, UploadFile, File, HTTPException, Form, Query
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
+
+
+
 import pandas as pd
 from io import BytesIO
 from pathlib import Path
@@ -25,6 +28,9 @@ from ..utils.db import (
     update_source_filepath,
     get_data_source_by_id,
     load_dataframe_to_table,
+    list_user_tables,
+    read_table_as_df,
+    read_table_head,
 )
 
 router = APIRouter()
@@ -742,3 +748,145 @@ async def load_source_to_db(
             "</div>"
         )
         return HTMLResponse(html)
+
+
+@router.get("/tables", response_class=HTMLResponse)
+async def tables_page(request: Request):
+
+    templates = get_templates(request)
+    try:
+        tables = list_user_tables("public")
+    except Exception as e:
+        logger.exception("Failed to list tables from PostgreSQL")
+        tables = []
+
+    return templates.TemplateResponse(
+        "tables.html",
+        {
+            "request": request,
+            "tables": tables,
+        },
+    )
+
+@router.get("/tables/{table_name}/preview", response_class=HTMLResponse)
+async def table_preview(request: Request, table_name: str, limit: int = 10):
+    """
+    return table head
+    """
+    templates = get_templates(request)
+
+    try:
+        df  = read_table_head(table_name)
+        preview_html = df.to_html(classes="preview-table", index = False)
+        row_count, col_count = df.shape
+    except Exception as e:
+        logger.exception("Failed to read head for table '%s'", table_name)
+        preview_html = f"<p>Failed to read table: {e}</p>"
+        row_count = 0
+        col_count = 0
+    
+    return templates.TemplateResponse(
+        "partials/table_preview.html",
+        {
+            "request": request,
+            "table_name": table_name,
+            "preview_html": preview_html,
+            "row_count": row_count,
+            "col_count": col_count,
+        },
+    )
+
+
+@router.get("/api/tables/{table_name}", response_class=JSONResponse)
+async def table_api(table_name: str, limit: int = Query(100, ge=1, le=10000)):
+    
+    try:
+        df = read_table_as_df(table_name, limit=limit)
+        records = df.to_dict(orient="records")
+        return JSONResponse(content={"table": table_name, "row_count": len(records), "data": records})
+    except Exception as e:
+        logger.exception("Failed to serve JSON API for table '%s'", table_name)
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Failed to fetch table '{table_name}': {e}"},
+        )
+
+
+@router.get("/tables/{table_name}/visualize", response_class=HTMLResponse)
+async def table_visualize(
+    request: Request,
+    table_name: str,
+    limit: int = Query(2000, ge=100, le=20000),
+):
+    """
+    Interactive Plotly visualizations for a table:
+
+    - Up to 3 numeric columns -> histograms (raw values, Plotly bins)
+    - Up to 2 categorical columns -> bar charts of top categories
+    """
+    templates = get_templates(request)
+
+    try:
+        df = read_table_as_df(table_name, limit=limit)
+    except Exception as e:
+        logger.exception("Failed to read table '%s' for visualization", table_name)
+        return templates.TemplateResponse(
+            "partials/table_visualize.html",
+            {
+                "request": request,
+                "table_name": table_name,
+                "error": str(e),
+                "numeric_data_json": "[]",
+                "categorical_data_json": "[]",
+            },
+        )
+
+    # Choose numeric vs categorical
+    numeric_cols = [
+        c for c in df.columns
+        if pd.api.types.is_numeric_dtype(df[c])
+    ]
+    categorical_cols = [
+        c for c in df.columns
+        if not pd.api.types.is_numeric_dtype(df[c])
+    ]
+
+    numeric_data = []
+    for col in numeric_cols[:3]:
+        series = df[col].dropna()
+        if series.empty:
+            continue
+        numeric_data.append(
+            {
+                "col": col,
+                "values": series.tolist(),
+            }
+        )
+
+    categorical_data = []
+    for col in categorical_cols[:2]:
+        series = df[col].dropna().astype(str)
+        if series.empty:
+            continue
+        vc = series.value_counts().head(10)
+        if vc.empty:
+            continue
+        categorical_data.append(
+            {
+                "col": col,
+                "labels": list(vc.index),
+                "values": [int(v) for v in vc.values],
+            }
+        )
+
+    return templates.TemplateResponse(
+        "partials/table_visualize.html",
+        {
+            "request": request,
+            "table_name": table_name,
+            "error": None,
+            # pre-dumped JSON so we don't need extra Jinja filters
+            "numeric_data_json": json.dumps(numeric_data),
+            "categorical_data_json": json.dumps(categorical_data),
+        },
+    )

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Tables · ETL Builder{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div>
+        <h2>Database Tables</h2>
+        <p class="page-header__subtitle">
+            Explore tables loaded into PostgreSQL, preview data, use JSON APIs, and inspect simple summaries.
+        </p>
+    </div>
+</section>
+
+<section class="grid grid--two-columns">
+    <div class="card">
+        <div class="card__header">
+            <h3 class="card__title">Tables in PostgreSQL</h3>
+            <p class="card__subtitle">Schema: public</p>
+        </div>
+
+        {% if tables and tables|length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Table</th>
+                    <th>Row estimate</th>
+                    <th>Size</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for t in tables %}
+            {% if t.table_name != "data_sources" %}
+                <tr>
+                    <td><code>{{ t.table_name }}</code></td>
+                    <td>{{ t.row_estimate or "?" }}</td>
+                    <td>
+                        {% if t.size_bytes is not none %}
+                            {{ (t.size_bytes / 1024 / 1024) | round(2) }} MB
+                        {% else %}
+                            ?
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- View (preview) -->
+                        <button
+                            class="btn btn--tiny"
+                            hx-get="/tables/{{ t.table_name }}/preview"
+                            hx-target="#table-detail"
+                            hx-swap="innerHTML"
+                        >
+                            View
+                        </button>
+
+                        <!-- API (JSON) -->
+                        <a
+                            class="btn btn--tiny btn--ghost"
+                            href="/api/tables/{{ t.table_name }}?limit=100"
+                            target="_blank"
+                        >
+                            API (JSON)
+                        </a>
+
+                        <!-- Visualize -->
+                        <button
+                            class="btn btn--tiny btn--secondary"
+                            hx-get="/tables/{{ t.table_name }}/visualize"
+                            hx-target="#table-detail"
+                            hx-swap="innerHTML"
+                        >
+                            Visualize
+                        </button>
+                    </td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p class="muted-text">No user tables found in the database yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <div class="card__header">
+            <h3 class="card__title">Details</h3>
+            <p class="card__subtitle">Preview, summary, and profiles will appear here.</p>
+        </div>
+        <div id="table-detail">
+            <p class="muted-text">Select a table on the left to view its data or summary.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

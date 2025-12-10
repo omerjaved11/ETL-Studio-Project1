@@ -1,0 +1,13 @@
+<div class="card card--nested">
+    <div class="card__header card__header--compact">
+        <h4 class="card__title">Preview: {{ table_name }}</h4>
+        <p class="card__subtitle">
+            Showing up to {{ row_count }} rows, {{ col_count }} columns.
+        </p>
+    </div>
+    <div class="card__body">
+        <div class="table-wrapper">
+            {{ preview_html | safe }}
+        </div>
+    </div>
+</div>
