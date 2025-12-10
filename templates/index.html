@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}ETL Builder - Home{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Welcome to your ETL Builder</h2>
+    <p>
+        This tool will let you:
+    </p>
+    <ul>
+        <li>Select one or more <strong>sources</strong> (CSV, JSON, API, XML, Website tables)</li>
+        <li>Define <strong>transformations</strong> (drop columns, handle nulls, joins, create new columns, etc.)</li>
+        <li><strong>Load</strong> the cleaned data into PostgreSQL tables</li>
+        <li>Track <strong>runs, logs, and rejected records</strong></li>
+    </ul>
+
+    <p>Next steps we’ll add:</p>
+    <ol>
+        <li>“Sources” page: add and preview data sources</li>
+        <li>“Transform” page: build transformation pipeline</li>
+        <li>“Load” page: choose DB/table and load</li>
+    </ol>
+</section>
+{% endblock %}

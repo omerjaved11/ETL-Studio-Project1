@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ETL Builder{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="app-header-left">
+                <span class="app-logo">🧩</span>
+                <div>
+                    <h1 class="app-title">ETL Builder</h1>
+                    <p class="app-subtitle">Upload · Transform · Load · Inspect</p>
+                </div>
+            </div>
+            <nav class="app-nav">
+                <a href="/" class="nav-link {% if request.url.path == '/' %}nav-link--active{% endif %}">
+                    Home
+                </a>
+                <a href="/sources" class="nav-link {% if request.url.path.startswith('/sources') %}nav-link--active{% endif %}">
+                    Sources
+                </a>
+                <a href="/etls" class="nav-link {% if request.url.path.startswith('/etls') %}nav-link--active{% endif %}">
+                    ETLs
+                </a>
+            </nav>
+        </header>
+
+        <main class="app-main">
+            <div class="app-container">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>ETL Builder · Python · FastAPI · Pandas · PostgreSQL</p>
+        </footer>
+    </div>
+
+    <!-- HTMX (if not already loaded somewhere else) -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</body>
+</html>

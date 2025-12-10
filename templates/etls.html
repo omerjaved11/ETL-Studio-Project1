@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}ETL Pipelines{% endblock %}
+
+{% block content %}
+<section>
+    <h2>ETL Pipelines</h2>
+    <p>
+        Run predefined ETL pipelines. Currently available:
+        <strong>Retail Retail Sales (sales + product_hierarchy + store_cities)</strong>.
+    </p>
+
+    <hr>
+
+    <h3>Retail Retail ETL</h3>
+
+    <form action="/etls/retail/run" method="post">
+        <fieldset>
+            <legend>Run Options</legend>
+
+            <div>
+                <label>
+                    <input type="radio" name="run_type" value="now" checked>
+                    Run now
+                </label>
+                <label>
+                    <input type="radio" name="run_type" value="schedule">
+                    Schedule (future feature)
+                </label>
+            </div>
+
+            <div>
+                <label for="batch_size">
+                    Batch size (rows per batch, currently just logged):
+                </label>
+                <input
+                    type="number"
+                    id="batch_size"
+                    name="batch_size"
+                    value="1000"
+                    min="1"
+                    required
+                >
+            </div>
+        </fieldset>
+
+        <button type="submit">Run Retail Retail ETL</button>
+    </form>
+
+    {% if message %}
+        <hr>
+        <h3>Result</h3>
+        <p>{{ message }}</p>
+
+        {% if result %}
+            <h4>Pipeline Summary</h4>
+            <ul>
+                <li>Sales raw shape: {{ result.sales_raw_shape }}</li>
+                <li>Products raw shape: {{ result.products_raw_shape }}</li>
+                <li>Stores raw shape: {{ result.stores_raw_shape }}</li>
+                <li>Sales clean shape: {{ result.sales_clean_shape }}</li>
+                <li>Products clean shape: {{ result.products_clean_shape }}</li>
+                <li>Stores clean shape: {{ result.stores_clean_shape }}</li>
+                <li>Enriched (joined) shape: {{ result.enriched_shape }}</li>
+            </ul>
+        {% endif %}
+    {% endif %}
+</section>
+{% endblock %}

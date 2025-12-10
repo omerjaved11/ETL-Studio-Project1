@@ -1,0 +1,133 @@
+<div class="card card--nested source-preview">
+    <div class="card__header card__header--compact">
+        <div>
+            <h3 class="card__title">Preview</h3>
+            {% if source_id %}
+                <p class="card__subtitle">
+                    Working on Source ID: <code>{{ source_id }}</code>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card__body">
+        <div class="table-wrapper">
+            {{ preview_html | safe }}
+        </div>
+
+        {% if source_id %}
+        <div class="actions-grid">
+            <div class="actions-group">
+                <h4 class="actions-title">Quality checks</h4>
+                <form
+                    hx-post="/sources/{{ source_id }}/validate"
+                    hx-target="#validation-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <button type="submit" class="btn btn--secondary">Run validation</button>
+                </form>
+            </div>
+
+            <div class="actions-group">
+                <h4 class="actions-title">Cleaning</h4>
+                <form
+                    hx-post="/sources/{{ source_id }}/clean/drop-null-rows"
+                    hx-target="#preview-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <button type="submit" class="btn btn--secondary">
+                        Drop rows with any nulls
+                    </button>
+                </form>
+
+                <form
+                    hx-post="/sources/{{ source_id }}/clean/drop-columns"
+                    hx-target="#preview-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <!-- checkboxes for columns are rendered in validation report -->
+                    <!-- this button is enabled once user selects columns there -->
+                    <button type="submit" class="btn btn--secondary">
+                        Apply column drops
+                    </button>
+                </form>
+            </div>
+
+            <div class="actions-group">
+                <h4 class="actions-title">Persistence</h4>
+                <form
+                    hx-post="/sources/{{ source_id }}/save"
+                    hx-target="#preview-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <button type="submit" class="btn btn--ghost">Save current state</button>
+                </form>
+
+                <form
+                    hx-post="/sources/{{ source_id }}/replay"
+                    hx-target="#preview-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <button type="submit" class="btn btn--ghost">
+                        Reset to raw &amp; replay pipeline
+                    </button>
+                </form>
+            </div>
+
+            <div class="actions-group">
+                <h4 class="actions-title">Load to database</h4>
+                <form
+                    hx-post="/sources/{{ source_id }}/load"
+                    hx-target="#validation-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                    class="form form--stacked"
+                >
+                    <label class="form-label">
+                        Target table
+                        <input
+                            type="text"
+                            class="form-input"
+                            name="target_table"
+                            value="source_{{ source_id }}"
+                            required
+                        >
+                    </label>
+                    <label class="form-label">
+                        Mode
+                        <select name="mode" class="form-input">
+                            <option value="overwrite">overwrite</option>
+                            <option value="append">append</option>
+                        </select>
+                    </label>
+                    <button type="submit" class="btn btn--primary">Load to DB</button>
+                </form>
+
+                <a href="/sources/{{ source_id }}/download" class="btn btn--ghost" target="_blank">
+                    Download CSV
+                </a>
+
+                <form
+                    hx-post="/sources/{{ source_id }}/export-config"
+                    hx-target="#validation-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <button type="submit" class="btn btn--ghost">
+                        Show pipeline config (JSON)
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        <div id="validation-area" class="validation-area">
+            <!-- Validation + load results appear here -->
+        </div>
+    </div>
+</div>

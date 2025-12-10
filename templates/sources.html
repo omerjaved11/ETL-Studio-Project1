@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Sources · ETL Builder{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div>
+        <h2>Data Sources</h2>
+        <p class="page-header__subtitle">
+            Register raw inputs, preview them, and build your transformation pipeline.
+        </p>
+    </div>
+</section>
+
+<section class="grid grid--two-columns">
+    <!-- LEFT: Existing sources -->
+    <div class="card">
+        <div class="card__header">
+            <h3 class="card__title">Existing Sources</h3>
+            <p class="card__subtitle">Select a source and open it to work on it.</p>
+        </div>
+
+        <div id="sources-table-wrapper">
+            {% include "partials/sources_table.html" %}
+        </div>
+    </div>
+
+    <!-- RIGHT: Upload + Preview -->
+    <div class="card">
+        <div class="card__header">
+            <h3 class="card__title">Upload New Source</h3>
+            <p class="card__subtitle">Start by uploading a CSV file. Transform options come next.</p>
+        </div>
+
+        <form
+            id="csv-upload-form"
+            class="form form--inline"
+            hx-post="/sources/upload"
+            hx-target="#preview-area"
+            hx-swap="innerHTML"
+            hx-encoding="multipart/form-data"
+            enctype="multipart/form-data"
+            method="post"
+        >
+            <div class="form-row">
+                <label class="form-label">
+                    CSV file
+                    <input type="file" class="form-input" id="csv_file" name="file" accept=".csv" required>
+                </label>
+
+                <label class="form-label">
+                    Skip rows
+                    <input type="number" class="form-input" name="skip_rows" min="0" value="0">
+                    <span class="form-help">Use this if your file has header text rows.</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Upload &amp; Preview</button>
+        </form>
+
+        <hr class="card__divider">
+
+        <div id="preview-area">
+            <p class="muted-text">No data loaded yet. Upload a CSV to see a preview and actions.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

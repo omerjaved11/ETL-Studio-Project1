@@ -1,0 +1,50 @@
+<div class="card card--nested validation-report">
+    <div class="card__header card__header--compact">
+        <h4 class="card__title">Validation report</h4>
+        <p class="card__subtitle">Rows: {{ row_count }}</p>
+    </div>
+
+    <div class="card__body">
+        {% if report and report|length > 0 %}
+        <form
+            hx-post="/sources/{{ source_id }}/clean/drop-columns"
+            hx-target="#preview-area"
+            hx-swap="innerHTML"
+            method="post"
+        >
+            <table class="table table--compact">
+                <thead>
+                    <tr>
+                        <th>Drop?</th>
+                        <th>Column</th>
+                        <th>Type</th>
+                        <th>Nulls</th>
+                        <th>Null %</th>
+                        <th>Example values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for col in report %}
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="columns" value="{{ col.name }}">
+                        </td>
+                        <td>{{ col.name }}</td>
+                        <td>{{ col.dtype }}</td>
+                        <td>{{ col.null_count }}</td>
+                        <td>{{ col.null_pct }}%</td>
+                        <td class="table__cell--muted">{{ col.sample_values }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn--secondary">
+                Drop selected columns &amp; update preview
+            </button>
+        </form>
+        {% else %}
+            <p class="muted-text">No columns found in this dataset.</p>
+        {% endif %}
+    </div>
+</div>

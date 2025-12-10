@@ -1,0 +1,45 @@
+{% if sources and sources|length > 0 %}
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Rows</th>
+            <th>Columns</th>
+            <th>Status</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for s in sources %}
+        <tr>
+            <td>
+                <form
+                    hx-post="/sources/{{ s.id }}/open"
+                    hx-target="#preview-area"
+                    hx-swap="innerHTML"
+                    method="post"
+                >
+                    <button type="submit" class="btn btn--tiny">Open</button>
+                </form>
+            </td>
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.source_type }}</td>
+            <td>{{ s.row_count }}</td>
+            <td>{{ s.column_count }}</td>
+            <td>
+                <span class="badge badge--{{ s.status|default('ready') }}">
+                    {{ s.status|capitalize }}
+                </span>
+            </td>
+            <td>{{ s.created_at }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="muted-text">No sources defined yet. Upload a CSV to create your first source.</p>
+{% endif %}
