@@ -194,9 +194,9 @@ def transform_sales(sales_df: pd.DataFrame) -> pd.DataFrame:
 
     df = _drop_all_na_columns(df, label)
     df = _remove_duplicates(df, label, subset=["product_id", "store_id"] if "product_id" in df.columns and "store_id" in df.columns else None)
-    df = _fill_na(df, label)
+    # df = _fill_na(df, label)
     df = _drop_na_rows(df, label)
-    df = _remove_outliers_iqr(df, label)
+    # df = _remove_outliers_iqr(df, label)
     df = _parse_dates_if_present(df, label)
 
     logger.info("[TRANSFORM] Final sales shape: %s", df.shape)
@@ -213,7 +213,7 @@ def transform_products(products_df: pd.DataFrame) -> pd.DataFrame:
     df = _standardize_key(df, ["product_id", "ProductID", "productID"], "product_id")
     df = _drop_all_na_columns(df, label)
     df = _remove_duplicates(df, label, subset=["product_id"] if "product_id" in df.columns else None)
-    df = _fill_na(df, label)
+    # df = _fill_na(df, label)
     df = _drop_na_rows(df, label)
     logger.info("[TRANSFORM] Final product_hierarchy shape: %s", df.shape)
     return df
@@ -229,7 +229,7 @@ def transform_stores(stores_df: pd.DataFrame) -> pd.DataFrame:
     df = _standardize_key(df, ["store_id", "StoreID", "storeId"], "store_id")
     df = _drop_all_na_columns(df, label)
     df = _remove_duplicates(df, label, subset=["store_id"] if "store_id" in df.columns else None)
-    df = _fill_na(df, label)
+    # df = _fill_na(df, label)
     df = _drop_na_rows(df, label)
     logger.info("[TRANSFORM] Final store_cities shape: %s", df.shape)
     return df
